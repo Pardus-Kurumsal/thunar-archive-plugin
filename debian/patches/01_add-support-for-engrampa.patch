@@ -1,0 +1,91 @@
+Description: Add support for archive manager for MATE
+Author: Mateusz Łukasik <mati75@linuxmint.pl>
+Bug-Debian: https://bugs.debian.org/783611
+
+--- a/scripts/Makefile.am
++++ b/scripts/Makefile.am
+@@ -3,7 +3,8 @@
+ wrapperdir = $(libexecdir)/thunar-archive-plugin
+ wrapper_SCRIPTS =							\
+ 	ark.tap								\
+-	file-roller.tap
++	file-roller.tap							\
++	engrampa.tap
+ 
+ # Install symlink to 'gnome-file-roller.tap'
+ install-exec-hook:
+@@ -12,6 +13,13 @@ install-exec-hook:
+ 		test -f gnome-file-roller.tap \
+ 		|| ln -sf file-roller.tap gnome-file-roller.tap )
+ 
++# Install symlink to 'mate-engrampa.tap'
++install-exec-hook:
++	$(mkinstalldirs) $(DESTDIR)$(wrapperdir)
++	-( cd $(DESTDIR)$(wrapperdir) ; \
++		test -f mate-engrampa.tap \
++		|| ln -sf engrampa.tap mate-engrampa.tap )
++
+ EXTRA_DIST =								\
+ 	$(wrapper_SCRIPTS)						\
+ 	template.tap
+--- a/scripts/Makefile.in
++++ b/scripts/Makefile.in
+@@ -283,7 +283,8 @@ top_srcdir = @top_srcdir@
+ wrapperdir = $(libexecdir)/thunar-archive-plugin
+ wrapper_SCRIPTS = \
+ 	ark.tap								\
+-	file-roller.tap
++	file-roller.tap							\
++	engrampa.tap
+ 
+ EXTRA_DIST = \
+ 	$(wrapper_SCRIPTS)						\
+--- /dev/null
++++ b/scripts/engrampa.tap
+@@ -0,0 +1,46 @@
++#!/bin/sh
++#
++# engrampa.tap - Wrapper script to create and extract archive files
++#                   in Thunar, via the thunar-archive-plugin, using the
++#                   engrampa archive manager.
++#
++# Copyright (c) 2014 Mateusz Łukasik <mati75@linuxmint.pl>
++#
++# This program is free software; you can redistribute it and/or
++# modify it under the terms of the GNU General Public License as
++# published by the Free Software Foundation; either version 2 of
++# the License, or (at your option) any later version.
++#
++# This program is distributed in the hope that it will be useful,
++# but WITHOUT ANY WARRANTY; without even the implied warranty of
++# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++# GNU General Public License for more details.
++#
++# You should have received a copy of the GNU General Public
++# License along with this program; if not, write to the Free
++# Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
++# Boston, MA 02110-1301, USA.
++
++# determine the action and the folder, $@ then contains only the files
++action=$1; shift;
++folder=$1; shift;
++
++# check the action
++case $action in
++create)
++	exec engrampa "--default-dir=$folder" --add "$@"
++	;;
++
++extract-here)
++	exec engrampa "--extract-to=$(pwd)" --extract-here --force "$@"
++	;;
++
++extract-to)
++	exec engrampa "--default-dir=$folder" --extract "$@"
++	;;
++
++*)
++	echo "Unsupported action '$action'" >&2
++	exit 1
++esac
++
