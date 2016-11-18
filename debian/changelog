@@ -1,3 +1,10 @@
+thunar-archive-plugin (0.3.1-4pardus1) pardus; urgency=medium
+
+  * debian/control: reorder recommends list
+  * Prefer file-roller over xarchiver
+
+ -- Cihangir Akturk <cihangir@pardus.org.tr>  Fri, 18 Nov 2016 10:42:08 +0000
+
 thunar-archive-plugin (0.3.1-4) unstable; urgency=medium
 
   [ Mateusz Łukasik ]
