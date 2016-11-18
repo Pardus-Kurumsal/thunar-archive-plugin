@@ -1,0 +1,73 @@
+0.3.1
+=====
+- Fix build with --as-needed (bug #7533). Patch by Yves-Alexis Perez.
+- Automake updates.
+- Fix unused but set variable.
+- Translation updates: Arabic, Bulgarian, German, Spanish
+  (Castilian), Croatian, Italian, Japanese, Korean, Lithuanian,
+  Latvian, Dutch (Flemish), Portuguese, Romanian, Slovak, Slovenian,
+  Serbian, Uyghur, Chinese (China).
+
+
+0.3.0
+=====
+- Port the plugin to thunarx-2 and exo-1 (bug #6093).
+- Add support for extracting 7z, lzma and xz archives (bug #6136).
+- Remove INSTALL from the git repository.
+- Drop .pot and LINGUAS file. Add .gitignore. Enable silent build rules.
+- Add a symlink to gnome-file-roller.tap to fix file-roller detection.
+- Make "Extract Here" work again with file-roller (bug #3261).
+- Updated translations: Chinese (Taiwan), Croatian, Galician, Greek, Hungarian,
+  Kazakh, Polish, Portuguese, Romanian, Russian, Slovak, Uyghur and many more.
+
+
+0.2.4
+=====
+- Updated translations: Carles Muñoz Gorriz (ca), Roberto Pariset (it)
+- New translations: Amanpreet Singh Alam (pa), Gunther Furtado (pt_BR)
+
+
+0.2.2
+=====
+- The dependency on Thunar was bumped to version 0.4.0.
+- The plugin now supports the Drag'n'Drop context menu introduced with Thunar
+  0.5.0, and installs an "Extract here" action when dropping supported
+  archive files to a local folder.
+- Use tangoified icons.
+- Updated translations: Benedikt Meurer (de), Stavros Giannouris (el), Piarres
+			Beobide (eu), Gerald Barre and Maximilian Schleiss (fr),
+			Piotr Maliński (pl), Hydonsingore Cia (zh_TW)
+- New translations: Michal Várady (cs), Jarbas Araujo (eo), Roberto Pariset
+		    (it), Stephan Arts (nl)
+
+
+0.2.0
+=====
+- The plugin now supports a variety of archive managers through a generic
+  interface, that requires the archive manager to install a .desktop file
+  as usual, that lists the supported mime types, and a .tap file that acts
+  as a wrapper script to invoke the archive manager with the appropriate
+  parameters for the create, extract-here and extract-to actions.
+- Wrapper scripts for file-roller (the GNOME archive manager) and ark (the
+  KDE archive manager) have been added. Xarchiver, the Xfce archive manager,
+  will include an appropriate xarchiver.tap file in the next release.
+- Import the file-roller icons for the create and extract actions.
+- New translations: Carles Munoz (ca), Piarres Beobide (eu)
+- Updated translations: Benedikt Meurer (de), Szervác Attila (hu)
+
+
+0.1.2
+=====
+- When extracting an archive into the current folder, or creating an archive in
+  the current folder, the file manager view is reloaded properly now once the
+  file-roller command terminates, no matter if Thunar was build with or without
+  FAM/Gamin.
+- New translations: Stavros Giannouris (el), Stephane Roy (fr), Szervác
+  Attila (hu), Daichi Kawahata (ja), Piotr Malinski (pl), Andrey Fedoseev (ru),
+  Hydonsingore Cia (zh_TW)
+
+
+0.1.0
+=====
+- Initial release of the archive plugin with support for creating and
+  extracting archives using File Roller.
