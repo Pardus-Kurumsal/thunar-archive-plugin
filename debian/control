@@ -13,7 +13,7 @@ Vcs-Browser: http://anonscm.debian.org/viewvc/pkg-xfce/goodies/trunk/thunar-arch
 Package: thunar-archive-plugin
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, thunar (>= 0.5.0rc2-1)
-Recommends: xarchiver (>= 0.3.9.2beta2-2 ) | ark | file-roller | engrampa
+Recommends: file-roller | xarchiver (>= 0.3.9.2beta2-2 ) | ark | engrampa
 Description: Archive plugin for Thunar file manager
  This plugin allows one to extract and create archive from inside the Thunar
  file manager. At the moment it uses file-roller but will use xarchiver in the
